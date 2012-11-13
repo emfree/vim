@@ -121,17 +121,17 @@ set mouse=a
 " Got backspace?
 set backspace=2
 
-" Line Numbers PWN!
+" Line Numbers
 set number
 
 set smartcase
 
-" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+" Remap jj to escape in insert mode.
 inoremap jj <Esc>
 
 nnoremap JJJJ <Nop>
 
-" Incremental searching is sexy
+" Incremental searching.
 set incsearch
 
 " Highlight things that we find with the search
@@ -156,16 +156,6 @@ set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 " }}}
 
 "{{{ Functions
-
-"{{{ Open URL in browser
-
-function! Browser ()
-   let line = getline (".")
-   let line = matchstr (line, "http[^   ]*")
-   exec "!konqueror ".line
-endfunction
-
-"}}}
 
 "{{{ Paste Toggle
 let paste_mode = 0 " 0 = normal, 1 = paste
