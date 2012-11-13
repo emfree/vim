@@ -243,10 +243,6 @@ nnoremap <silent> j gj
 inoremap <silent> <Up> <Esc>gka
 inoremap <silent> <Down> <Esc>gja
 
-" Good call Benjie (r for i)
-nnoremap <silent> <Home> i <Esc>r
-nnoremap <silent> <End> a <Esc>r
-
 " Create Blank Newlines and stay in Normal mode
 nnoremap <silent> zj o<Esc>
 nnoremap <silent> zk O<Esc>
