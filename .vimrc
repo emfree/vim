@@ -4,9 +4,7 @@
 
 
 
-" Automatically close parentheses / braces
-:inoremap ( ()<Esc>i
-:inoremap [ []<Esc>i
+" Automatically close braces
 :inoremap {<CR>  {<CR>}<Esc>O
 
 "{{{Auto Commands
