@@ -4,9 +4,7 @@
 
 
 
-" Automatically close parentheses / braces
-:inoremap ( ()<Esc>i
-:inoremap [ []<Esc>i
+" Automatically close braces
 :inoremap {<CR>  {<CR>}<Esc>O
 
 "{{{Auto Commands
@@ -264,12 +262,12 @@ nnoremap <leader>par :%s/^>$//<CR>
 "}}}
 
 "{{{Taglist configuration
-let Tlist_Use_Right_Window = 1
 let Tlist_Enable_Fold_Column = 0
 let Tlist_Exit_OnlyWindow = 1
 let Tlist_Use_SingleClick = 1
 let Tlist_Inc_Winwidth = 0
-let Tlist_Ctags_Cmd='/usr/bin/ctags'
+" use exuberant ctags installation in .vim/ctags
+let Tlist_Ctags_Cmd = '~/.vim/ctags/ctags'
 
 "}}}
 

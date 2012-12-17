@@ -2,4 +2,4 @@ vim
 ===
 
 Vim settings and plugins.
-to install: 'make install'. Caution: this will overwrite your vimrc and .vim directory without warning or mercy.
+to install: 'make install'. Caution: overwrites existing .vimrc and .vim directory.
