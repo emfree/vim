@@ -7,6 +7,9 @@
 " Automatically close braces
 :inoremap {<CR>  {<CR>}<Esc>O
 
+" Max linewidth: 79 columns
+set tw=79
+
 "{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
@@ -93,7 +96,6 @@ set gcr=a:blinkon0
 set hls is ic scs
 set sw=2 sts=2 et
 
-" Who doesn't like autoindent?
 set autoindent
 
 " Spaces are better than a tab character
@@ -106,12 +108,9 @@ if version >= 700
    set nospell
 endif
 
-" Real men use gcc
-"compiler gcc
-
 " Cool tab completion stuff
-set wildmenu
-set wildmode=list:longest,full
+ set wildmenu
+ set wildmode=list:longest,full
 
 " Enable mouse support in console
 set mouse=a
