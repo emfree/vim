@@ -57,9 +57,9 @@ function! Smart_TabComplete()
   if (strlen(substr)==0)                          " nothing to match on empty string
     return "\<tab>"
   endif
-  let has_period = match(substr, '\.') != -1      " position of period, if any
+"  let has_period = match(substr, '\.') != -1      " position of period, if any
   let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_period && !has_slash)
+  if (!has_slash) " (!has_period && !has_slash)
     return "\<C-X>\<C-P>"                         " existing text matching
   elseif ( has_slash )
     return "\<C-X>\<C-F>"                         " file matching
