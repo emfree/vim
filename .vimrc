@@ -88,8 +88,8 @@ set showcmd
 set foldmethod=syntax
 
 " Needed for Syntax Highlighting and stuff
-filetype on
-syntax enable
+filetype plugin indent on
+syntax on
 set grepprg=grep\ -nH\ $*
 
 set gcr=a:blinkon0
@@ -274,8 +274,6 @@ let g:rct_completion_use_fri = 1
 "let g:Tex_DefaultTargetFormat = "pdf"
 let g:Tex_ViewRule_pdf = "kpdf"
 
-filetype plugin indent on
-syntax on
 
 let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
