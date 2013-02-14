@@ -150,6 +150,9 @@ highlight MatchParen ctermbg=4
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 
+"Pathogen
+execute pathogen#infect()
+
 " }}}
 
 "{{{ Functions
