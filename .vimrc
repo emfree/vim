@@ -78,7 +78,7 @@ set background=dark
 set t_Co=16
 colorscheme solarized
 
-" Necesary  for lots of cool vim things
+" Necessary for lots of cool vim things
 set nocompatible
 
 " This shows what you are typing as a command.  I love this!
@@ -239,6 +239,9 @@ nnoremap <silent> zk O<Esc>
 
 " Space will toggle folds!
 nnoremap <space> za
+
+" experimental: fold C++-style coment blocks
+syn match comment "\v(^\s*//.*\n)+" fold
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
