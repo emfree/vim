@@ -2,4 +2,9 @@ vim
 ===
 
 Vim settings and plugins.
-to install: 'make install'. Caution: overwrites existing .vimrc and .vim directory.
+to install:
+
+git clone git://github.com/emfree/vim.git ~/.vim
+cd ~/.vim
+chmod +x install.sh
+./install.sh
