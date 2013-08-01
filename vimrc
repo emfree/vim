@@ -10,6 +10,9 @@
 " Max linewidth: 79 columns
 set tw=79
 
+" Use color column
+set colorcolumn=79
+
 "{{{Auto Commands
 
 " Automatically cd into the directory that the file is in
@@ -222,10 +225,7 @@ nnoremap <silent> <F10> :call Paste_on_off()<CR>
 set pastetoggle=<F10>
 
 " Edit vimrc \ev
-nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vimrc<CR>
-
-" Edit gvimrc \gv
-nnoremap <silent> <Leader>gv :tabnew<CR>:e ~/.gvimrc<CR>
+nnoremap <silent> <Leader>ev :tabnew<CR>:e ~/.vim/vimrc<CR>
 
 " Up and down are more logical with g..
 nnoremap <silent> k gk
@@ -241,7 +241,7 @@ nnoremap <silent> zk O<Esc>
 nnoremap <space> za
 
 " experimental: fold C++-style coment blocks
-syn match comment "\v(^\s*//.*\n)+" fold
+:syn match comment "\v(^\s*//.*\n)+" fold
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
