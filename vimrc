@@ -2,8 +2,6 @@
 
 
 
-
-
 " Automatically close braces
 :inoremap {<CR>  {<CR>}<Esc>O
 
@@ -49,6 +47,13 @@ augroup END
 
 "}}}
 
+
+" Ctags
+map <C-L> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q .<CR><CR>
+set tags=~/.vim/stdtags,tags,.tags,../tags
+autocmd InsertLeave * if pumvisible() == 0|pclose|endif
+
+
 "{{{ Use tab for autocompletion
 function! Smart_TabComplete()
   let line = getline('.')                         " current line
@@ -84,14 +89,21 @@ colorscheme solarized
 " Necessary for lots of cool vim things
 set nocompatible
 
+" Vundle
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+Bundle 'gmarik/vundle'
+"Bundle 'Valloric/YouCompleteMe'
+filetype plugin indent on
+
+
 " This shows what you are typing as a command.  I love this!
 set showcmd
 
 " Folding Stuffs
 set foldmethod=syntax
 
-" Needed for Syntax Highlighting and stuff
-filetype plugin indent on
 syntax on
 set grepprg=grep\ -nH\ $*
 
@@ -104,12 +116,6 @@ set autoindent
 " Spaces are better than a tab character
 set expandtab
 set smarttab
-
-" Use english for spellchecking, but don't spellcheck by default
-if version >= 700
-   set spl=en spell
-   set nospell
-endif
 
 " Cool tab completion stuff
  set wildmenu
@@ -152,10 +158,6 @@ highlight MatchParen ctermbg=4
 "Status line gnarliness
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
-
-"Pathogen
-execute pathogen#infect()
-
 " }}}
 
 "{{{ Functions
