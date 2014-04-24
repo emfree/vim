@@ -1,7 +1,5 @@
 " Credit: http://stackoverflow.com/questions/164847/what-is-in-your-vimrc
 
-
-
 " Automatically close braces
 :inoremap {<CR>  {<CR>}<Esc>O
 
@@ -9,12 +7,9 @@
 set tw=79
 
 " Use color column
-set colorcolumn=79
+set colorcolumn=80
 
 "{{{Auto Commands
-
-" Automatically cd into the directory that the file is in
-autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
 
 " Remove any trailing whitespace that is in the file
 autocmd BufRead,BufWrite * if ! &bin | silent! %s/\s\+$//ge | endif
@@ -54,31 +49,6 @@ set tags=~/.vim/stdtags,tags,.tags,../tags
 autocmd InsertLeave * if pumvisible() == 0|pclose|endif
 
 
-"{{{ Use tab for autocompletion
-function! Smart_TabComplete()
-  let line = getline('.')                         " current line
-
-  let substr = strpart(line, -1, col('.')+1)      " from the start of the current
-                                                  " line to one character right
-                                                  " of the cursor
-  let substr = matchstr(substr, "[^ \t]*$")       " word till cursor
-  if (strlen(substr)==0)                          " nothing to match on empty string
-    return "\<tab>"
-  endif
-"  let has_period = match(substr, '\.') != -1      " position of period, if any
-  let has_slash = match(substr, '\/') != -1       " position of slash, if any
-  if (!has_slash) " (!has_period && !has_slash)
-    return "\<C-X>\<C-P>"                         " existing text matching
-  elseif ( has_slash )
-    return "\<C-X>\<C-F>"                         " file matching
-  else
-    return "\<C-X>\<C-O>"                         " plugin matching
-  endif
-endfunction
-
-inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-"}}}
-
 "{{{Misc Settings
 
 "Solarized is the best colorscheme
@@ -91,25 +61,23 @@ set nocompatible
 
 " Vundle
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
-Bundle 'gmarik/vundle'
-"Bundle 'Valloric/YouCompleteMe'
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Bundle 'gmarik/Vundle.vim'
+Bundle 'Valloric/YouCompleteMe'
+call vundle#end()
 filetype plugin indent on
 
 
 " This shows what you are typing as a command.  I love this!
 set showcmd
 
-" Folding Stuffs
-set foldmethod=syntax
-
 syntax on
 set grepprg=grep\ -nH\ $*
 
 set gcr=a:blinkon0
 set hls is ic scs
-set sw=2 sts=2 et
+set sw=4 sts=4 et
 
 set autoindent
 
@@ -177,20 +145,6 @@ func! Paste_on_off()
 endfunc
 "}}}
 
-"{{{ Todo List Mode
-
-function! TodoListMode()
-   e ~/.todo.otl
-   Calendar
-   wincmd l
-   set foldlevel=1
-   tabnew ~/.notes.txt
-   tabfirst
-   " or 'norm! zMzr'
-endfunction
-
-"}}}
-
 "}}}
 
 "{{{ Mappings
@@ -204,9 +158,6 @@ nnoremap <silent> <F2> :Project<CR>
 " Open the Project Plugin
 nnoremap <silent> <Leader>pal  :Project .vimproject<CR>
 
-" TODO Mode
-nnoremap <silent> <Leader>todo :execute TodoListMode()<CR>
-
 " Open the TagList Plugin <F3>
 nnoremap <silent> <F3> :Tlist<CR>
 
@@ -217,7 +168,7 @@ nnoremap <silent> <C-Right> :tabnext<CR>
 nnoremap <silent> <C-Left> :tabprevious<CR>
 
 " New Tab
-nnoremap <silent> <C-t> :tabnew<CR>
+nnoremap <silent> <C-t> :tabnew<CR>:CtrlP<CR>
 
 " DOS is for fools.
 nnoremap <silent> <F9> :%s/$//g<CR>:%s// /g<CR>
@@ -239,11 +190,9 @@ inoremap <silent> <Down> <Esc>gja
 nnoremap <silent> zj o<Esc>
 nnoremap <silent> zk O<Esc>
 
-" Space will toggle folds!
-nnoremap <space> za
-
-" experimental: fold C++-style coment blocks
-:syn match comment "\v(^\s*//.*\n)+" fold
+" Fast-ish scrolling
+nnoremap <silent> <S-Up> 5kzz
+nnoremap <silent> <S-Down> 5jzz
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -264,8 +213,6 @@ nnoremap : ;
 " Fix email paragraphs
 nnoremap <leader>par :%s/^>$//<CR>
 
-"ly$O#{{{ "lpjjj_%A#}}}jjzajj
-
 "}}}
 
 "{{{Taglist configuration
@@ -279,11 +226,20 @@ let Tlist_Ctags_Cmd = '~/.vim/ctags/ctags'
 "}}}
 
 let g:rct_completion_use_fri = 1
-"let g:Tex_DefaultTargetFormat = "pdf"
-let g:Tex_ViewRule_pdf = "kpdf"
+
+set clipboard=unnamedplus
+
+" CtrlP configuration
+let g:ctrlp_custom_ignore = '\v\.pyc$'
 
 
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
+" Swapfiles are really more annoying than they're worth
+set noswapfile
+
+" pathogen
+execute pathogen#infect()
+
+" Disable Background Color Erase to fix mouse / Ctrl-arrow keys
+" Why? I have no idea.
+" http://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
+set t_ut=
