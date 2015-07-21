@@ -65,6 +65,13 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Bundle 'gmarik/Vundle.vim'
 Bundle 'Valloric/YouCompleteMe'
+Bundle 'tpope/vim-fugitive'
+Bundle 'fatih/vim-go'
+Bundle 'hynek/vim-python-pep8-indent'
+Bundle 'scrooloose/syntastic'
+Bundle 'mtscout6/vim-cjsx'
+Bundle 'kien/ctrlp.vim'
+Bundle 'kchmck/vim-coffee-script'
 call vundle#end()
 filetype plugin indent on
 
@@ -75,9 +82,8 @@ set showcmd
 syntax on
 set grepprg=grep\ -nH\ $*
 
-set gcr=a:blinkon0
 set hls is ic scs
-set sw=4 sts=4 et
+set sw=4 ts=4 sts=4 et
 
 set autoindent
 
@@ -96,7 +102,7 @@ set mouse=a
 set backspace=2
 
 " Line Numbers
-set number
+set relativenumber number
 
 set smartcase
 
@@ -193,6 +199,7 @@ nnoremap <silent> zk O<Esc>
 " Fast-ish scrolling
 nnoremap <silent> <S-Up> 5kzz
 nnoremap <silent> <S-Down> 5jzz
+nnoremap <Space> :w<CR>
 
 " Search mappings: These will make it so that going to the next one in a
 " search will center on the line it's found in.
@@ -209,6 +216,14 @@ inoremap <expr> <m-;> pumvisible() ? "\<lt>c-n>" : "\<lt>c-x>\<lt>c-o>\<lt>c-n>\
 " Swap ; and :  Convenient.
 nnoremap ; :
 nnoremap : ;
+
+" Set breakpoint in Python
+nnoremap <silent> <Leader>pdb oimport pdb; pdb.set_trace()<CR><Esc>
+
+nnoremap <silent> <Leader>stop o# STOPSHIP(emfree)
+
+" Replace word under cursor with default buffer contents
+nnoremap <silent> <Leader>r "_diwP
 
 " Fix email paragraphs
 nnoremap <leader>par :%s/^>$//<CR>
@@ -231,6 +246,13 @@ set clipboard=unnamedplus
 
 " CtrlP configuration
 let g:ctrlp_custom_ignore = '\v\.pyc$'
+let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
 
 
 " Swapfiles are really more annoying than they're worth
@@ -243,3 +265,21 @@ execute pathogen#infect()
 " Why? I have no idea.
 " http://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
 set t_ut=
+
+
+let g:ycm_server_keep_logfiles = 1
+let g:ycm_server_log_level = 'debug'
+
+
+" Quit if quickfix window is last
+" http://vim.wikia.com/wiki/Automatically_quit_Vim_if_quickfix_window_is_the_last
+au BufEnter * call MyLastWindow()
+function! MyLastWindow()
+  " if the window is quickfix go on
+  if &buftype=="quickfix"
+    " if this window is last on screen quit without warning
+    if winbufnr(2) == -1
+      quit!
+    endif
+  endif
+endfunction
