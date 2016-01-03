@@ -72,6 +72,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'mtscout6/vim-cjsx'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'rust-lang/rust.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -117,7 +118,7 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
-" Since I use linux, I want this
+" Default register = linux clipboard
 let g:clipbrdDefaultReg = '+'
 
 " When I close a tab, remove the buffer
