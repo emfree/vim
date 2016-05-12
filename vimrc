@@ -118,9 +118,6 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
-" Default register = linux clipboard
-let g:clipbrdDefaultReg = '+'
-
 " When I close a tab, remove the buffer
 set nohidden
 
@@ -134,6 +131,9 @@ highlight MatchParen ctermbg=4
 set laststatus=2
 set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
 " }}}
+
+" Default register = linux clipboard
+set clipboard=unnamedplus
 
 "{{{ Functions
 
@@ -207,8 +207,7 @@ nnoremap <Space> :w<CR>
 map N Nzz
 map n nzz
 
-" Testing
-set completeopt=longest,menuone,preview
+set completeopt=longest,menuone
 
 inoremap <expr> <cr> pumvisible() ? "\<c-y>" : "\<c-g>u\<cr>"
 inoremap <expr> <c-n> pumvisible() ? "\<lt>c-n>" : "\<lt>c-n>\<lt>c-r>=pumvisible() ? \"\\<lt>down>\" : \"\"\<lt>cr>"
@@ -241,10 +240,6 @@ let Tlist_Ctags_Cmd = '~/.vim/ctags/ctags'
 
 "}}}
 
-let g:rct_completion_use_fri = 1
-
-set clipboard=unnamedplus
-
 " CtrlP configuration
 let g:ctrlp_custom_ignore = '\v\.pyc$'
 let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
@@ -259,9 +254,6 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 " Swapfiles are really more annoying than they're worth
 set noswapfile
 
-" pathogen
-execute pathogen#infect()
-
 " Disable Background Color Erase to fix mouse / Ctrl-arrow keys
 " Why? I have no idea.
 " http://superuser.com/questions/401926/how-to-get-shiftarrows-and-ctrlarrows-working-in-vim-in-tmux
@@ -270,6 +262,8 @@ set t_ut=
 
 let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
+let g:ycm_add_preview_to_completeopt=0
+let g:rct_completion_use_fri = 1
 
 
 " Quit if quickfix window is last
