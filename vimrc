@@ -264,6 +264,7 @@ let g:ycm_server_keep_logfiles = 1
 let g:ycm_server_log_level = 'debug'
 let g:ycm_add_preview_to_completeopt=0
 let g:rct_completion_use_fri = 1
+let g:go_fmt_command = "goimports"
 
 
 " Quit if quickfix window is last
