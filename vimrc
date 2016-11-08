@@ -73,6 +73,7 @@ Bundle 'mtscout6/vim-cjsx'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rust-lang/rust.vim'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 call vundle#end()
 filetype plugin indent on
 
@@ -109,6 +110,8 @@ set smartcase
 
 " Remap jj to escape in insert mode.
 inoremap jj <Esc>
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 nnoremap JJJJ <Nop>
 
