@@ -73,6 +73,7 @@ Bundle 'mtscout6/vim-cjsx'
 Bundle 'kien/ctrlp.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'rust-lang/rust.vim'
+Bundle 'hashivim/vim-terraform'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 call vundle#end()
 filetype plugin indent on
@@ -270,6 +271,9 @@ let g:rct_completion_use_fri = 1
 let g:go_fmt_command = "goimports"
 let g:rustfmt_autosave = 1
 let g:ycm_rust_src_path="/home/emfree/repos/rust/src"
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_html_checkers = ['eslint']
+let g:syntastic_go_checkers = ['govet', 'errcheck', 'go']
 
 
 " Quit if quickfix window is last
